@@ -1,0 +1,30 @@
+version: '1'
+services:
+    mysql:
+        image: mysql:5.6
+        environment:
+            - MYSQL_ROOT_PASSWORD=test
+            - MYSQL_DATABASE=qa_mc-backend
+        ports:
+            - 3307:3306
+        volumes:
+            - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+        restart: always
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      depends_on:
+          - mysql
+      links:
+          - mysql
+      environment:
+          PMA_HOST: mysql
+          PMA_USER: root
+          PMA_PASSWORD: test
+      ports:
+          - 8081:80
+      restart: always
+    redis:
+        image: redis
+        ports:
+            - 6379:6379
+        restart: always
