@@ -8,4 +8,7 @@
   mysql 容器 保存到镜像
   ```
   docker commit mysql_base_container mysql_image
-  ```
+ 
+ ```
+## 镜像
+ curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://753db95c.m.daocloud.io
